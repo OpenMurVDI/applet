@@ -1,0 +1,42 @@
+README Applet OpenMurVDI
+------------------------------------------
+Rev: 0.8 (Mayo 2014)
+
+PROYECTO: OpenVDI
+COMPONENTE: Applet Java Redirector de conexión para VDI
+
+FUNCIONALIDAD:
+-Se ejecuta en una página web en el navegador en la parte cliente
+-La página web debe pasar como parámetros
+    *login => login del usuario remoto
+    *password => contraseña del usuario remoto
+    *vdidesktop_ip => ip del escritorio remoto
+-Detecta el S.O (Linux/Windows del cliente)
+-Si es linux intenta conexión por xfreerdp chacia la mv 
+con las credenciales pasadas como parámetro en la página web
+-Si es Windows >= W7 intenta conexión por mstsc habiendo previamente
+creado unas credenciales con cmdkey pasadas como parámetro en la página web
+
+
+REQUISITOS:
+-Probado solo con Firefox en el cliente
+-En clientes linux:
+    *Tener instalado xfreerdp (no se comprueba todavía desde el applet)
+    *Configurar la máquina virtual java configurada para que pueda ejecutar applet firmados por terceros
+    (ControlPanel) 
+-En cliente Windows:
+    *Tener la máquina virtual java configurada para que pueda ejecutar applet firmados por terceros
+    * Si es Windows XP se debería copiar la utilidad cmdkey de un Windows 7 o superior
+    (esta funcionalidad no ha sido todavia probada)
+    * Si es Windows 7 o superior no debería haber problemas 
+-El W7 remoto tiene que tener habilitado la conexión entrante a escritorio remoto (cuidado con el firewall de windows)
+-La instancia en openstack tiene que estar en un grupo de seguridad que permita las conexiones entrantes al 3389 de RDP
+
+TODO:
+-Probarlo y hacerlo funcionar con todos los navegadores más utilizados
+-Esta actualmente probado solo contra W7, falta probarlo contra una mv linux y otros windows 8, 8.1  
+-Falta función de verificar en linux si se tiene instalado xfreerdp
+-Mostrar en linux el certificado que presenta la mv, (actualmente se ignora el certificado al llamar comando xfreerdp)
+-Probar con cliente WXP copiando utilidad cmdkey desde un W7 o superior a ver si funciona
+-Verificar todos los posibles errores
+
